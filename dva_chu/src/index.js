@@ -6,8 +6,12 @@ import './index.css';
 
 // 1. Initialize
 const app = dva({
-  onError(e) {
-    message.error(e.message);
+  initialState: {
+    products: [{
+      name: '第一次', id: 11
+    }, {
+      name: '第二次', id: 22
+    }]
   }
 });
 
@@ -15,7 +19,8 @@ const app = dva({
 // app.use({});
 
 // 3. Model
-app.model(require('./models/example').default);
+// app.model(require('./models/example').default);
+app.model(require('./models/product').default);
 
 // 4. Router
 app.router(require('./router').default);

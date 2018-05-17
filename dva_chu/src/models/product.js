@@ -1,9 +1,9 @@
 
 export default {
 
-  namespace: 'e1e',
+  namespace: 'products',
 
-  state: {},
+  state: [],
 
   subscriptions: {
     setup({ dispatch, history }) {  // eslint-disable-line
@@ -21,6 +21,7 @@ export default {
       return { ...state, ...action.payload };
     },
     'delete'(state, { payload: id }) {
+      console.log(id);
       return state.filter(item => item.id !== id);
     },
   },
