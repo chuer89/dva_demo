@@ -3,7 +3,7 @@ import {connect} from 'dva';
 
 import List from '../components/list';
 
-const Products = ({ dispatch, products }) => {
+const Products = ({ products, dispatch }) => {
 
   console.log(products, 'dis');
 
@@ -21,6 +21,9 @@ const Products = ({ dispatch, products }) => {
   )
 };
 
-export default connect(({ products }) => ({
-  products
-}))(Products);
+export default connect((state) => {
+  let products = state.products.products;
+  return{
+    products
+  }
+})(Products);

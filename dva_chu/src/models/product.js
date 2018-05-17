@@ -3,7 +3,13 @@ export default {
 
   namespace: 'products',
 
-  state: [],
+  state: {
+    products: [{
+      name: '第一1次', id: 11
+    }, {
+      name: '第二1次', id: 22
+    }]
+  },
 
   subscriptions: {
     setup({ dispatch, history }) {  // eslint-disable-line
@@ -21,8 +27,11 @@ export default {
       return { ...state, ...action.payload };
     },
     'delete'(state, { payload: id }) {
-      console.log(id);
-      return state.filter(item => item.id !== id);
+      console.log(state, state.products.filter(item => item.id !== id));
+      let products = {
+        products: state.products.filter(item => item.id !== id)
+      }
+      return products;
     },
   },
 
