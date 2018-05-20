@@ -1,39 +1,20 @@
 import React from 'react';
 import { Router, Route, Switch, routerRedux, Redirect } from 'dva/router';
-import IndexPage from './routes/IndexPage';
+
 import dynamic from 'dva/dynamic';
-
-import Products from './routes/Products';
-
-function RouterConfig({ history }) {
-  return (
-    <Router history={history}>
-      <Switch>
-        <Route path="/" exact component={Products} />
-        <Route path="/demo" component={IndexPage} />
-      </Switch>
-    </Router>
-  );
-}
-
 
 const { ConnectedRouter } = routerRedux;
 
 const Routers = function ({ history, app }) {
-  // const error = dynamic({
-  //   app,
-  //   component: () => import('./routes/error'),
-  // });
-
   const routes = [
     {
-      path: '/',
-      models: () => [import('./models/example')],
+      path: '/demo',
+      // models: () => [import('./models/example')],
       component: () => import('./routes/IndexPage')
     },
     {
-      path: '/demo',
-      models: () => [import('./models/product')],
+      path: '/index',
+      // models: () => [import('./models/menus')],
       component: () => import('./routes/Products')
     }
   ];
@@ -41,7 +22,7 @@ const Routers = function ({ history, app }) {
   return (
     <ConnectedRouter history={history}>
       <Switch>
-        <Route exact path="/" render={() => (<Redirect to="/" />)} />
+        <Route exact path="/" render={() => (<Redirect to="/index" />)} />
         {
           routes.map(({ path, ...dynamics }, key) => (
             <Route key={key}
@@ -54,10 +35,9 @@ const Routers = function ({ history, app }) {
             />
           ))
         }
-        {/* <Route component={error} /> */}
       </Switch>
     </ConnectedRouter>
   )
 }
 
-export default RouterConfig;
+export default Routers;
