@@ -1,11 +1,20 @@
 import dva from 'dva';
-// import createLoading from 'dva-loading';
-// import { message } from 'antd';
+import createLoading from 'dva-loading';
+import { message } from 'antd';
+import createHistory from 'history/createBrowserHistory';
 
 import './index.css';
 
 // 1. Initialize
-const app = dva();
+const app = dva({
+  ...createLoading({
+    effects: true,
+  }),
+  history: createHistory(),
+  onError (error) {
+    message.error(error.message)
+  },
+});
 
 // 2. Plugins
 // app.use({});
