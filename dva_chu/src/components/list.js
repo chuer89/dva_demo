@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Table, Popconfirm, Button } from 'antd';
-import { Link } from 'react-router-dom';
 
 const List = ({onDelete, products}) => {
   const columns = [{

@@ -1,3 +1,4 @@
+import { routerRedux } from 'dva/router';
 
 export default {
 
@@ -15,6 +16,10 @@ export default {
 	effects: {
 		*fetch({ payload }, { call, put }) {  // eslint-disable-line
 			yield put({ type: 'save' });
+		},
+
+		* redirect ({ payload }, { put }) {
+			yield put(routerRedux.push('/demo'));
 		},
 	},
 

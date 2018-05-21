@@ -7,10 +7,10 @@ import dynamic from 'dva/dynamic';
 const { ConnectedRouter } = routerRedux;
 
 const Routers = function ({ history, app }) {
-  // const error = dynamic({
-  //   app,
-  //   component: () => import('./routes/error'),
-  // })
+  const error = dynamic({
+    app,
+    component: () => import('./routes/error'),
+  });
 
   const routes = [
     {
@@ -45,6 +45,7 @@ const Routers = function ({ history, app }) {
             />
           ))
         }
+        <Route component={error} />
       </Switch>
     </ConnectedRouter>
   )
