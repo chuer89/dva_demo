@@ -33,6 +33,11 @@ export default {
       }
       return products;
     },
+
+    'sfmenu' (state, {payload: key}) {
+      console.log(key);
+      return {};
+		}
   },
 
 };

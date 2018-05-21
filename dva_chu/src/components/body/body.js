@@ -1,7 +1,8 @@
 import React from 'react';
-import { connect } from 'dva';
+import {connect} from 'dva';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-import styles from './body.less';
+// import styles from './body.less';
+import { routerRedux } from 'dva/router';
 
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -10,10 +11,9 @@ class Body extends React.Component {
 	constructor(props) {
 		super(props);
 		// 设置 initial state
-		console.log(this, 'yy');
 		this.state = {
-			children: props.children,
-			collapsed: false
+			collapsed: false,
+			selectedKeys: ['1']
 		}
 	}
 
@@ -21,24 +21,42 @@ class Body extends React.Component {
     console.log(collapsed);
     this.setState({ collapsed });
 	}
+
+	onClick = ({item, key, keyPath}) => {
+		let path = 'index';
+		if (key === '2') {
+			path = 'role';
+		}
+		this.setState({
+			selectedKeys: [key]
+		});
+		this.props.dispatch(routerRedux.push(path));
+	}
 	
 	render() {
+		const {
+      children
+		} = this.props;
+		
 		return (
 			<Layout style={{ minHeight: '100vh' }}>
 				<Sider
 					collapsible
 					collapsed={this.state.collapsed}
-          onCollapse={this.onCollapse}
+					onCollapse={this.onCollapse}
 				>
 					<div className="logo" />
-					<Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+					<Menu theme="dark" 
+					onClick={this.onClick}
+					selectedKeys={this.state.selectedKeys} 
+					defaultSelectedKeys={['1']} mode="inline">
 						<Menu.Item key="1">
 							<Icon type="pie-chart" />
-							<span>Option 1</span>
+							32434
 						</Menu.Item>
 						<Menu.Item key="2">
 							<Icon type="desktop" />
-							<span>Option 2</span>
+							<span>角色</span>
 						</Menu.Item>
 						<SubMenu
 							key="sub1"
@@ -69,7 +87,7 @@ class Body extends React.Component {
 							<Breadcrumb.Item>Bill</Breadcrumb.Item>
 						</Breadcrumb>
 						<div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-							Bill is a cat.{this.state.children}
+							Bill is a cat.{children}
             </div>
 					</Content>
 					<Footer style={{ textAlign: 'center' }}>
@@ -81,4 +99,4 @@ class Body extends React.Component {
 	}
 };
 
-export default Body;
+export default connect()(Body);

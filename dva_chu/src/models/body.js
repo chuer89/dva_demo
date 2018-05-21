@@ -23,5 +23,10 @@ export default {
 			console.log(collapsed);
 			this.setState({ collapsed });
 		},
+
+		onClickMenu (state, {payload: key}) {
+			console.log(key);
+			return {};
+		}
 	},
 };

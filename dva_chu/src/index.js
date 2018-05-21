@@ -1,6 +1,6 @@
 import dva from 'dva';
-import createLoading from 'dva-loading';
-import { message } from 'antd';
+// import createLoading from 'dva-loading';
+// import { message } from 'antd';
 
 import './index.css';
 

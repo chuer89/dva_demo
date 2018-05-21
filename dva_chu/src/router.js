@@ -1,11 +1,17 @@
 import React from 'react';
-import { Router, Route, Switch, routerRedux, Redirect } from 'dva/router';
+import PropTypes from 'prop-types';
+import { Route, Switch, routerRedux, Redirect } from 'dva/router';
 
 import dynamic from 'dva/dynamic';
 
 const { ConnectedRouter } = routerRedux;
 
 const Routers = function ({ history, app }) {
+  // const error = dynamic({
+  //   app,
+  //   component: () => import('./routes/error'),
+  // })
+
   const routes = [
     {
       path: '/demo',
@@ -14,8 +20,12 @@ const Routers = function ({ history, app }) {
     },
     {
       path: '/index',
-      // models: () => [import('./models/menus')],
+      models: () => [import('./models/product')],
       component: () => import('./routes/Products')
+    },
+    {
+      path: '/role',
+      component: () => import('./routes/role/')
     }
   ];
 
@@ -38,6 +48,11 @@ const Routers = function ({ history, app }) {
       </Switch>
     </ConnectedRouter>
   )
+}
+
+Routers.propTypes = {
+  history: PropTypes.object,
+  app: PropTypes.object,
 }
 
 export default Routers;
