@@ -50,9 +50,9 @@ class Page extends React.Component {
 			})
 		};
 
-		ajax('/partner/yunfang/areaSearch.do', {
-			comName: 'ts'
-		})
+		// ajax('/partner/yunfang/areaSearch.do', {
+		// 	comName: 'ts'
+		// })
 	}
 
 	onCollapse = (collapsed) => {
@@ -86,7 +86,7 @@ class Page extends React.Component {
 						<Menu.Item key="2">
 							<Link to="/role">
 								<Icon type="desktop" />
-								<span>角色</span>
+								<span>角色表格</span>
 							</Link>
 						</Menu.Item>
 						<SubMenu
