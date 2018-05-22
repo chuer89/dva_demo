@@ -1,43 +1,71 @@
 import React from 'react';
-import {connect} from 'dva';
+import { connect } from 'dva';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 // import styles from './body.less';
-import { routerRedux } from 'dva/router';
+import { Link } from 'dva/router';
+import pathToRegexp from 'path-to-regexp';
+import axios from 'axios';
+
+axios.defaults.headers.post['content-Type'] = 'application/json;charset=UTF-8';
 
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
-class Body extends React.Component {
+class Page extends React.Component {
 	constructor(props) {
 		super(props);
 		// 设置 initial state
 		this.state = {
 			collapsed: false,
-			selectedKeys: ['1']
+			defaultSelectedKeys: ['1'],
+			selectedKeys: '',
+			menus: {
+				'/role': ['2'],
+				'/index': ['1']
+			}
 		}
+	}
+
+	componentWillMount() {
+		let hash = window.location.hash.replace('#', '');
+		let selectedKeys = this.state.menus[hash] || this.state.defaultSelectedKeys;
+
+		this.setState({
+			selectedKeys
+		});
+
+		let ajax = (api, params) => {
+			let config = {
+				// url: 'ks_manager' + api,
+				url: '/ks_manager/partner/yunfang/areaSearch.do',
+				method: 'post',
+				params,
+				headers: {
+					'Content-Type': 'application/json;charset=UTF-8'
+				}
+			};
+
+			axios(config).then((res) => {
+
+			})
+		};
+
+		ajax('/partner/yunfang/areaSearch.do', {
+			comName: 'ts'
+		})
 	}
 
 	onCollapse = (collapsed) => {
-    console.log(collapsed);
-    this.setState({ collapsed });
+		this.setState({ collapsed });
 	}
 
-	onClick = ({item, key, keyPath}) => {
-		let path = 'index';
-		if (key === '2') {
-			path = 'role';
-		}
-		this.setState({
-			selectedKeys: [key]
-		});
-		this.props.dispatch(routerRedux.push(path));
-	}
-	
 	render() {
 		const {
-      children
+			children
 		} = this.props;
-		
+
+		const { selectedKeys } = this.state;
+
 		return (
 			<Layout style={{ minHeight: '100vh' }}>
 				<Sider
@@ -46,17 +74,20 @@ class Body extends React.Component {
 					onCollapse={this.onCollapse}
 				>
 					<div className="logo" />
-					<Menu theme="dark" 
-					onClick={this.onClick}
-					selectedKeys={this.state.selectedKeys} 
-					defaultSelectedKeys={['1']} mode="inline">
+					<Menu theme="dark"
+						selectedKeys={selectedKeys}
+						mode="inline">
 						<Menu.Item key="1">
-							<Icon type="pie-chart" />
-							32434
+							<Link to="/index">
+								<Icon type="pie-chart" />
+								<span>11</span>
+							</Link>
 						</Menu.Item>
 						<Menu.Item key="2">
-							<Icon type="desktop" />
-							<span>角色</span>
+							<Link to="/role">
+								<Icon type="desktop" />
+								<span>角色</span>
+							</Link>
 						</Menu.Item>
 						<SubMenu
 							key="sub1"
@@ -88,7 +119,7 @@ class Body extends React.Component {
 						</Breadcrumb>
 						<div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
 							Bill is a cat.{children}
-            </div>
+						</div>
 					</Content>
 					<Footer style={{ textAlign: 'center' }}>
 						Ant Design ©2016 Created by Ant UED
@@ -99,4 +130,4 @@ class Body extends React.Component {
 	}
 };
 
-export default connect()(Body);
+export default connect()(Page);

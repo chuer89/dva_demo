@@ -17,10 +17,4 @@ const Products = ({ products, dispatch }) => {
   )
 };
 
-export default connect((state) => {
-  let menus = state.menus;
-  let collapsed = menus.collapsed;
-  return{
-    collapsed
-  }
-})(Products);
+export default connect()(Products);

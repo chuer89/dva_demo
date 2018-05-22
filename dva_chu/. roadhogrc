@@ -1,10 +1,10 @@
 {
   "entry": "src/index.js",
   "proxy": {
-    "/api": {
-      "target": "http://jsonplaceholder.typicode.com/",
+    "/ks_manager": {
+      "target": "http://192.168.1.202:8080/",
       "changeOrigin": true,
-      "pathRewrite": { "^/api" : "" }
+      "pathRewrite": { "^/ks_manager" : "" }
     }
   },
   "env": {
