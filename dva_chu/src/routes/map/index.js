@@ -5,6 +5,8 @@ import { Link } from 'dva/router';
 import style from './index.less';
 import { Map } from 'react-amap';
 
+// https://elemefe.github.io/react-amap/articles/start 高德地图 react 版本
+
 class MapList extends React.Component {
   constructor(props) {
     super(props);
