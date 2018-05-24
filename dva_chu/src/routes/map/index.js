@@ -12,18 +12,23 @@ class MapList extends React.Component {
       amapkey: '30678ae375a00a1107177e2a272d1ec9',
       amapVersion: '1.4.6'
     };
-
-    this.mapCenter = { longitude: 120, latitude: 30 };
   }
 
   render() {
-    var pos = { longitude: 120, latitude: 30 };
+    let self = this;
+
+    const events = {
+      created: (ins) => {console.log(ins)},
+      click: (e) => {
+        console.log(e);
+      }
+    }
 
     return (
-      <div style={{ width: 600, height: 400 }}>
+      <div style={{ width: 1200, height: 400 }}>
         <h1>地图</h1>
         <Map zoom={5} 
-          center={this.mapCenter} 
+          events={events}
           amapkey={this.state.amapkey} 
           version={this.state.amapVersion} />
       </div>
