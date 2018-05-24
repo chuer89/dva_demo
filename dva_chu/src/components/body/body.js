@@ -36,9 +36,9 @@ class Page extends React.Component {
 
 		let ajax = (api, params) => {
 			let config = {
-				// url: 'ks_manager' + api,
-				url: '/ks_manager/partner/yunfang/areaSearch.do',
-				method: 'post',
+				url: api,
+				// url: '/ks_manager/partner/yunfang/areaSearch.do',
+				method: 'get',
 				params,
 				headers: {
 					'Content-Type': 'application/json;charset=UTF-8'
@@ -50,9 +50,9 @@ class Page extends React.Component {
 			})
 		};
 
-		// ajax('/partner/yunfang/areaSearch.do', {
+		// ajax('/ks_manager/partner/yunfang/areaSearch.do', {
 		// 	comName: 'ts'
-		// })
+		// });
 	}
 
 	onCollapse = (collapsed) => {
@@ -78,7 +78,7 @@ class Page extends React.Component {
 						selectedKeys={selectedKeys}
 						mode="inline">
 						<Menu.Item key="1">
-							<Link to="/index">
+							<Link to="/product">
 								<Icon type="pie-chart" />
 								<span>11</span>
 							</Link>

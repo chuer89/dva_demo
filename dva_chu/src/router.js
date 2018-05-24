@@ -14,12 +14,20 @@ const Routers = function ({ history, app }) {
 
   const routes = [
     {
+      path: '/index',
+      component: () => import('./routes/home/')
+    },
+    {
+      path: '/map',
+      component: () => import('./routes/map/')
+    },
+    {
       path: '/demo',
       // models: () => [import('./models/example')],
       component: () => import('./routes/IndexPage')
     },
     {
-      path: '/index',
+      path: '/product',
       models: () => [import('./models/product')],
       component: () => import('./routes/Products')
     },
