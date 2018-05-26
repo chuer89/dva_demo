@@ -26,10 +26,13 @@ class MapList extends React.Component {
       }
     }
 
+    const Loading = <div className={style.loadingStyle}>Loading Map...</div>
+
     return (
       <div style={{ width: 1200, height: 400 }}>
         <h1>地图</h1>
         <Map zoom={5} 
+          loading={Loading}
           events={events}
           amapkey={this.state.amapkey} 
           version={this.state.amapVersion} />
