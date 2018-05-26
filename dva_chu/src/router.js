@@ -19,6 +19,7 @@ const Routers = function ({ history, app }) {
     },
     {
       path: '/map',
+      models: () => [import('./models/map')],
       component: () => import('./routes/map/')
     },
     {

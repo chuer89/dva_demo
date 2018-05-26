@@ -1,9 +1,10 @@
+
 export default {
 
-	namespace: 'menus',
+	namespace: 'map',
 
 	state: {
-		collapsed: false
+		site: ''
 	},
 
 	subscriptions: {
@@ -18,14 +19,14 @@ export default {
 	},
 
 	reducers: {
-		onCollapse(state, { payload: collapsed }) {
-			console.log(collapsed);
-			this.setState({ collapsed });
+		delete(state, { payload: id }) {
+			return state.filter(item => item.id !== id);
 		},
-
-		onClickMenu(state, { payload: key }) {
-			console.log(key);
-			return {};
+		filter(state, {payload: item}) {
+			return {
+				...state,
+				site: item
+			};
 		}
 	},
 };

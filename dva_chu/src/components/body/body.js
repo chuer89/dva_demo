@@ -3,7 +3,6 @@ import { connect } from 'dva';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 // import styles from './body.less';
 import { Link } from 'dva/router';
-import pathToRegexp from 'path-to-regexp';
 import axios from 'axios';
 
 axios.defaults.headers.post['content-Type'] = 'application/json;charset=UTF-8';

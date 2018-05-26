@@ -1,9 +1,9 @@
 import { connect } from 'dva';
 import React from 'react';
-import { Button, Row, Col } from 'antd';
-import { Link } from 'dva/router';
 import style from './index.less';
 import { Map, Marker } from 'react-amap';
+
+import Filtrate from '../../components/mapList/filtrate';
 
 // https://elemefe.github.io/react-amap/articles/start 高德地图 react 版本
 
@@ -12,16 +12,7 @@ class MapList extends React.Component {
     super(props);
     this.state = {
       amapkey: '30678ae375a00a1107177e2a272d1ec9',
-      amapVersion: '1.4.6',
-      filtrate: {
-        site: [{
-          name: '姓名', id: '1'
-        }, {
-          name: '性别', id: '2'
-        }, {
-          name: '类型', id: '3'
-        }]
-      }
+      amapVersion: '1.4.6'
     };
 
     this.toolEvents = {
@@ -36,34 +27,28 @@ class MapList extends React.Component {
   }
 
   render() {
-    let self = this;
+    const dispatch = this.props.dispatch;
+    const mapData = this.props.map;
+
+    function handleFilter(item) {
+      dispatch({
+        type: 'map/filter',
+        payload: item,
+      });
+    }
 
     const events = {
-      created: (ins) => {console.log(ins)},
       click: (e) => {
         console.log(e);
       }
     }
-
     const Loading = <div className={style.loadingStyle}>Loading Map...</div>
-
-    const Site = () => {
-      const site = this.state.filtrate.site;
-      const siteList = site.map((item) => {
-        return <span>{item.name}</span>
-      });
-      return (
-        <div>{siteList}</div>
-      )
-    }
 
     return (
       <div>
-        <div>
-          <Site/>
-        </div>
+        <Filtrate onClick={handleFilter} siteResult={mapData.site}/>
         <h1>地图</h1>
-        <div style={{ width: 1100, height: 400 }}>
+        <div style={{ width: 1100, height: 350 }}>
           <Map zoom={5} 
             events={events}
             loading={Loading}
@@ -78,4 +63,8 @@ class MapList extends React.Component {
   }
 }
 
-export default connect()(MapList);
+export default connect(({map}) => {
+  return {
+    map
+  }
+})(MapList);
