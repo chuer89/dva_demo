@@ -3,7 +3,7 @@
   "publicPath": "./",
   "proxy": {
     "/ks_manager": {
-      "target": "http://192.168.1.202:8080/ks_manager/",
+      "target": "http://192.168.1.202:8080/",
       "changeOrigin": true
     },
   },

@@ -1,15 +1,22 @@
-import request from '../utils/request';
 import axios from 'axios';
 
-export function query(param) {
-	let body = {
-		method: 'GET',
+let ajax = (api, params) => {
+	let config = {
+		url: api,
+		method: 'post',
+		params,
 		headers: {
-			'Content-Type': 'application/json;charset=UTF-8',
-						// 'Content-Type': 'application/json',
-		},
-		body: param,
-	}
+			'Content-Type': 'application/json;charset=UTF-8'
+		}
+	};
 
-	return request('/ks_manager/partner/yunfang/areaSearch.do');
+	axios(config).then((res) => {
+
+	})
+};
+
+export function query(param) {
+	return ajax('/ks_manager/partner/yunfang/areaSearch.do', {
+		comName: 'ts'
+	});
 }
