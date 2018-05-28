@@ -1,4 +1,21 @@
 import axios from 'axios';
+import * as farmService from '../services/farm';
+
+let ajax = (api, params) => {
+	let config = {
+		url: api,
+		// url: '/ks_manager/partner/yunfang/areaSearch.do',
+		method: 'get',
+		params,
+		headers: {
+			'Content-Type': 'application/json;charset=UTF-8'
+		}
+	};
+
+	axios(config).then((res) => {
+
+	})
+};
 
 export default {
 
@@ -18,21 +35,8 @@ export default {
 			yield put({ type: 'save' });
 		},
 		*getData({payload}, {call, put}) {
-			let ajax = (api, params) => {
-				let config = {
-					url: api,
-					// url: '/ks_manager/partner/yunfang/areaSearch.do',
-					method: 'get',
-					params,
-					headers: {
-						'Content-Type': 'application/json;charset=UTF-8'
-					}
-				};
-	
-				axios(config).then((res) => {
-	
-				})
-			};
+
+			const temp = yield call(farmService.query, {});
 	
 			ajax('/ks_manager/partner/yunfang/areaSearch.do', {
 				comName: 'ts'
