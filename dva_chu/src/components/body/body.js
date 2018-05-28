@@ -49,9 +49,9 @@ class Page extends React.Component {
 			})
 		};
 
-		// ajax('/ks_manager/partner/yunfang/areaSearch.do', {
-		// 	comName: 'ts'
-		// });
+		ajax('/ks_manager/partner/yunfang/areaSearch.do', {
+			comName: 'ts'
+		});
 	}
 
 	onCollapse = (collapsed) => {
