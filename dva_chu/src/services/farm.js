@@ -1,6 +1,23 @@
 import axios from 'axios';
+import _ from 'lodash';
 
-let ajax = (api, params) => {
+import request from '../utils/request';
+
+let post = (api, param = {}) => {
+	let config = {
+		method: 'POST',
+		body: JSON.stringify(param)
+	};
+
+	return request(api, config);
+}
+
+export function queryArea(param = {}) {
+  return post('/ks_manager/partner/yunfang/areaSearch.do', param);
+}
+
+
+let ajax = (api, params = {}, success) => {
 	let config = {
 		url: api,
 		method: 'post',
@@ -10,13 +27,13 @@ let ajax = (api, params) => {
 		}
 	};
 
-	axios(config).then((res) => {
-
+	return axios(config).then((res) => {
+		if (res.status === 200) {
+			_.isFunction(success) && success(res.data);
+		}
 	})
 };
 
-export function query(param) {
-	return ajax('/ks_manager/partner/yunfang/areaSearch.do', {
-		comName: 'ts'
-	});
+export function query(param, cb) {
+	return ajax('/ks_manager/partner/yunfang/areaSearch.do', param, cb);
 }

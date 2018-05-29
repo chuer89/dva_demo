@@ -20,11 +20,24 @@ export default {
 		},
 		*getData({payload}, {call, put}) {
 
-			const temp = yield call(farmService.query, {});
-			console.log('temp', put);
+			// const temp = yield call(farmService.query, {
+			// 	comName: 't1s'
+			// }, (data) => {
+			// 	console.log(data, 'back');
+			// });
 
-			//  put({
-			// 	type: 'setData',
+			// const temp = yield call(farmService.queryArea, {
+			// 	comName: 't1s'
+			// });
+
+			// console.log(temp, 'back');
+
+			// yield put({ type: 'save' });
+
+			// yield put({ type: 'setData'});
+
+			// yield put({
+			// 	type: 'map/setData',
 			// 	payload: {
 			// 		y: '1'
 			// 	}
@@ -42,9 +55,12 @@ export default {
 				site: item
 			};
 		},
-		setData(state, data) {
-			console.log(data, 'put');
-			return {...state}
-		}
+		setData(state, action) {
+			console.log('put');
+			return { ...state, ...action.payload };
+		},
+		save(state, action) {
+      return { ...state, ...action.payload };
+    },
 	},
 };
