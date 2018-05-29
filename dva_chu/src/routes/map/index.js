@@ -2,9 +2,9 @@ import { connect } from 'dva';
 import React from 'react';
 import style from './index.less';
 import { Map, Markers } from 'react-amap';
-import axios from 'axios';
 
 import Filtrate from '../../components/mapList/filtrate';
+import Result from '../../components/mapList/result';
 
 // https://elemefe.github.io/react-amap/articles/start 高德地图 react 版本
 
@@ -67,6 +67,15 @@ class MapList extends React.Component {
     )
   }
 
+  handleContact(item) {
+    const dispatch = this.props.dispatch;
+
+    dispatch({
+      type: 'map/filter',
+      payload: item,
+    });
+  }
+
   render() {
     const dispatch = this.props.dispatch;
     const mapData = this.props.map;
@@ -123,8 +132,9 @@ class MapList extends React.Component {
       <div>
         <Filtrate onClick={handleFilter} siteResult={mapData.site}/>
         <h1>地图</h1>
-        <div style={{ width: 1100, height: 350 }}>
+        <div className={style.mapBox}>
           <MapDom/>
+          <Result onClick={this.handleContact}/>
         </div>
       </div>
     )

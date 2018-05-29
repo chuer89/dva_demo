@@ -6,7 +6,8 @@ export default {
 	namespace: 'map',
 
 	state: {
-		site: ''
+		site: '',
+		result: []
 	},
 
 	subscriptions: {
