@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import request from '../utils/request';
 
 let post = (api, param = {}) => {

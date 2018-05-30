@@ -30,7 +30,6 @@ const MapMark = () => {
   }
 
   let mapPlugins = ['ToolBar'];
-  let mapCenter = { longitude: 120, latitude: 35 };
   let markerPosition = [{
     position: { longitude: 103, latitude: 30 },
     myLabel: 'A',

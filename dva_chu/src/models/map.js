@@ -1,4 +1,3 @@
-import axios from 'axios';
 import farmService from '../services/farm';
 
 export default {
@@ -12,6 +11,14 @@ export default {
 
 	subscriptions: {
 		setup({ dispatch, history }) {  // eslint-disable-line
+			history.listen(({ pathname }) => {
+				console.log(pathname, 'page');
+				if (pathname === '/map') {
+          dispatch({
+            type: 'getData',
+          });
+        }
+      });
 		},
 	},
 
@@ -39,7 +46,7 @@ export default {
 			};
 		},
 		setData(state, {payload: data}) {
-			return { ...state, result: data};
+			return { ...state, result: data.slice(0, 4)};
 		},
 	},
 };

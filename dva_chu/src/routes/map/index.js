@@ -18,12 +18,12 @@ class MapList extends React.Component {
 
   componentWillMount() {
     const dispatch = this.props.dispatch;
-    dispatch({
-      type: 'map/getData',
-      payload: {
-        comName: '房子'
-      },
-    });
+    // dispatch({
+    //   type: 'map/getData',
+    //   payload: {
+    //     comName: '房子'
+    //   },
+    // });
   }
 
   handleContact(item) {
@@ -39,8 +39,6 @@ class MapList extends React.Component {
     const dispatch = this.props.dispatch;
     const mapData = this.props.map;
 
-    console.log(this.props.map, 'this');
-
     function handleFilter(item) {
       dispatch({
         type: 'map/filter',
@@ -54,7 +52,7 @@ class MapList extends React.Component {
         <h1>地图</h1>
         <div className={style.mapBox}>
           <MapMark/>
-          <Result onClick={this.handleContact}/>
+          <Result onClick={this.handleContact} resultData={mapData.result}/>
         </div>
       </div>
     )
