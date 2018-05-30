@@ -1,5 +1,5 @@
 import axios from 'axios';
-import * as farmService from '../services/farm';
+import farmService from '../services/farm';
 
 export default {
 
@@ -20,29 +20,11 @@ export default {
 			yield put({ type: 'save' });
 		},
 		*getData({payload}, {call, put}) {
-
-			// const temp = yield call(farmService.query, {
-			// 	comName: 't1s'
-			// }, (data) => {
-			// 	console.log(data, 'back');
-			// });
-
-			// const temp = yield call(farmService.queryArea, {
-			// 	comName: 't1s'
-			// });
-
-			// console.log(temp, 'back');
-
-			// yield put({ type: 'save' });
-
-			// yield put({ type: 'setData'});
-
-			// yield put({
-			// 	type: 'map/setData',
-			// 	payload: {
-			// 		y: '1'
-			// 	}
-			// })
+			const temp = yield call(farmService.queryArea, payload);
+			yield put({
+				type: 'setData',
+				payload: temp.data.data
+			})
 		}
 	},
 
@@ -56,12 +38,8 @@ export default {
 				site: item
 			};
 		},
-		setData(state, action) {
-			console.log('put');
-			return { ...state, ...action.payload };
+		setData(state, {payload: data}) {
+			return { ...state, result: data};
 		},
-		save(state, action) {
-      return { ...state, ...action.payload };
-    },
 	},
 };
