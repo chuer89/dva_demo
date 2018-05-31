@@ -4,7 +4,6 @@ import style from './result.less';
 import { Pagination } from 'antd';
 
 const Result = ({ onClick, resultData }) => {
-  console.log(resultData, 'res');
   const List = resultData.map((item, key) => {
     return (
       <div key={key} className={style.farmBox}>

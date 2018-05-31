@@ -12,11 +12,13 @@ export default {
 	subscriptions: {
 		setup({ dispatch, history }) {  // eslint-disable-line
 			history.listen(({ pathname }) => {
-				console.log(pathname, 'page');
 				if (pathname === '/map') {
           dispatch({
-            type: 'getData',
-          });
+						type: 'getData',
+						payload: {
+							comName: '房子'
+						},
+					});
         }
       });
 		},

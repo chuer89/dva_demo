@@ -5,6 +5,7 @@ import style from './index.less';
 import Filtrate from '../../components/mapList/filtrate';
 import Result from '../../components/mapList/result';
 import MapMark from '../../components/mapList/mapMark';
+import App from '../../components/body/app';
 
 // https://elemefe.github.io/react-amap/articles/start 高德地图 react 版本
 
@@ -18,12 +19,6 @@ class MapList extends React.Component {
 
   componentWillMount() {
     const dispatch = this.props.dispatch;
-    // dispatch({
-    //   type: 'map/getData',
-    //   payload: {
-    //     comName: '房子'
-    //   },
-    // });
   }
 
   handleContact(item) {
@@ -47,19 +42,19 @@ class MapList extends React.Component {
     }
 
     return (
-      <div>
-        <Filtrate onClick={handleFilter} siteResult={mapData.site}/>
+      <App>
+        <Filtrate onClick={handleFilter} siteResult={mapData.site} />
         <h1>地图</h1>
         <div className={style.mapBox}>
-          <MapMark/>
-          <Result onClick={this.handleContact} resultData={mapData.result}/>
+          <MapMark />
+          <Result onClick={this.handleContact} resultData={mapData.result} />
         </div>
-      </div>
+      </App>
     )
   }
 }
 
-export default connect(({map}) => {
+export default connect(({ map }) => {
   return {
     map
   }
