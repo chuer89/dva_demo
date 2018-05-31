@@ -28,7 +28,7 @@ const Filtrate = ({onClick, siteResult}) => {
   return (
     <div>
       <div>筛选类型：{siteList}</div>
-      <div>选择农场类型：</div>
+      <div>选择农场类型：{rangeList}</div>
       <div>选择结果：{siteResult.name}</div>
     </div>
   );
