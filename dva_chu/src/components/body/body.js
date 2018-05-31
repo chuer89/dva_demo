@@ -34,10 +34,9 @@ class Page extends React.Component {
 								Bill is a cat.{children}
 							</div>
 						</Content>
-						<Footer style={{ textAlign: 'center' }}>
-							Ant Design ©2016 Created by Ant UED
-          </Footer>
+						
 					</Layout>
+					
 				</Layout>
 			</App>
 		)

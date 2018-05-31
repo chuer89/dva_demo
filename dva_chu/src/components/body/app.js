@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'dva';
 import Header from './header';
+import { Layout } from 'antd';
+
+const { Footer } = Layout;
 
 class App extends React.Component {
   constructor(props) {
@@ -19,6 +22,9 @@ class App extends React.Component {
       <div>
         <Header />
         <div>{children}</div>
+        <Footer style={{ textAlign: 'center' }}>
+							Ant Design ©2016 Created by Ant UED
+          </Footer>
       </div>
     )
   }
